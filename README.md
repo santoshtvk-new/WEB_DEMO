@@ -100,5 +100,5 @@ MIT License. Free to use and customize!
 
 ## 🌐 Website
 
-🔗 Visit: [pynfinity](https://pynfinity.com)
-🧑‍💻 Author: [santoshtvk](https://www.linkedin.com/in/santoshtvk/)
+- 🔗 Visit: [pynfinity](https://pynfinity.com)
+- 🧑‍💻 Author: [santoshtvk](https://www.linkedin.com/in/santoshtvk/)
