@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebDemoer - Portable JS Bundle Demo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #3b82f6;
+            --primary-dark: #2563eb;
+            --secondary: #ec4899;
+            --dark: #0f172a;
+            --light: #f8fafc;
+            --card-bg: rgba(255, 255, 255, 0.85);
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #f0fdf4 0%, #e0f2fe 100%);
+            color: var(--dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Glassmorphism Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(12px);
+            z-index: 100;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        /* Hero Section */
+        header {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 6rem 2rem 2rem;
+            position: relative;
+        }
+        
+        /* Floating background shapes */
+        .shape-1 {
+            position: absolute;
+            top: 20%;
+            left: 10%;
+            width: 300px;
+            height: 300px;
+            background: var(--primary);
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.2;
+            z-index: -1;
+            animation: float 8s ease-in-out infinite alternate;
+        }
+
+        .shape-2 {
+            position: absolute;
+            bottom: 20%;
+            right: 10%;
+            width: 400px;
+            height: 400px;
+            background: var(--secondary);
+            border-radius: 50%;
+            filter: blur(100px);
+            opacity: 0.2;
+            z-index: -1;
+            animation: float 10s ease-in-out infinite alternate-reverse;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px) scale(1); }
+            100% { transform: translateY(-30px) scale(1.05); }
+        }
+
+        h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            letter-spacing: -1px;
+            max-width: 800px;
+        }
+        
+        .highlight {
+            color: var(--primary);
+            position: relative;
+            display: inline-block;
+        }
+
+        p.subtitle {
+            font-size: 1.25rem;
+            color: #475569;
+            max-width: 600px;
+            margin-bottom: 3rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem 2rem;
+            font-size: 1.125rem;
+            font-weight: 600;
+            border-radius: 12px;
+            text-decoration: none;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.4);
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 15px 35px rgba(59, 130, 246, 0.5);
+        }
+        
+        .btn-secondary {
+            background: white;
+            color: var(--dark);
+            margin-left: 1rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e2e8f0;
+        }
+        
+        .btn-secondary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Features Section */
+        .features {
+            padding: 6rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        
+        .section-header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background: var(--card-bg);
+            backdrop-filter: blur(16px);
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.03);
+            border: 1px solid rgba(255,255,255,0.4);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.08);
+        }
+        
+        .card-icon {
+            width: 60px;
+            height: 60px;
+            background: #e0f2fe;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+        }
+
+        .card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .card p {
+            color: #64748b;
+        }
+
+        /* Testimonials Section */
+        .testimonials {
+            background: #ffffff;
+            padding: 6rem 2rem;
+            border-top: 1px solid #f1f5f9;
+        }
+        
+        .testimonial-box {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 3rem;
+            background: #f8fafc;
+            border-radius: 24px;
+            position: relative;
+            border: 1px dashed #cbd5e1;
+        }
+        
+        .quotes {
+            font-size: 4rem;
+            color: #cbd5e1;
+            position: absolute;
+            top: 2rem;
+            left: 2rem;
+            line-height: 1;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: #94a3b8;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+        
+        .action-container {
+            margin-top: 4rem;
+            padding: 2rem;
+            background: rgba(255,255,255, 0.5);
+            border-radius: 16px;
+            text-align: center;
+            max-width: 800px;
+            margin: 4rem auto 0;
+            border: 1px solid rgba(255,255,255,0.8);
+        }
+        
+        /* Specific IDs for WebDemoer targets */
+        #nav-start-tour { border: 2px solid transparent; border-radius: 8px; padding: 4px 12px; }
+        #nav-start-tour:hover { background: rgba(0,0,0,0.05); }
+    </style>
+</head>
+<body>
+
+    <nav id="main-nav">
+        <div class="logo">DemoFlow</div>
+        <ul class="nav-links">
+            <li><a href="#features" id="link-features">Features</a></li>
+            <li><a href="#testimonials">Testimonials</a></li>
+            <li><a href="#" id="nav-start-tour" style="color: var(--primary); font-weight: 700;">Restart Tour</a></li>
+        </ul>
+    </nav>
+
+    <header id="hero-section">
+        <div class="shape-1"></div>
+        <div class="shape-2"></div>
+        
+        <h1>Build Better <span class="highlight" id="hero-highlight">Product Tours</span> in Minutes</h1>
+        <p class="subtitle" id="hero-subtitle">Engage users with beautiful, interactive walkthroughs featuring curvy arrows, dynamic highlights, and responsive design.</p>
+        
+        <div>
+            <button id="start-demo-btn" class="btn btn-primary">Start Interactive Demo</button>
+            <a href="https://github.com" id="github-btn" class="btn btn-secondary">View on GitHub</a>
+        </div>
+    </header>
+
+    <section id="features" class="features">
+        <div class="section-header">
+            <h2 id="features-title">Why Choose DemoFlow?</h2>
+            <p>Everything you need to create stunning onboarding experiences.</p>
+        </div>
+        
+        <div class="grid">
+            <div class="card" id="feature-card-1">
+                <div class="card-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+                </div>
+                <h3>Dynamic Overlays</h3>
+                <p>Creates a dark mask over the entire page while keeping exactly what you want highlighted in vivid clarity with animated pulses.</p>
+            </div>
+            
+            <div class="card" id="feature-card-2">
+                <div class="card-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 4h5v5"></path><polyline points="19.5 4 10 13.5"></polyline><path d="M17 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h5"></path></svg>
+                </div>
+                <h3>Curvy Arrows</h3>
+                <p>Beautifully calculated cubic-bezier arrows naturally draw the user's eye from the center explanatory text directly to the target element.</p>
+            </div>
+            
+            <div class="card" id="feature-card-3">
+                <div class="card-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                </div>
+                <h3>No Dependencies</h3>
+                <p>A completely portable vanilla JS bundle. No React, Vue, or jQuery required. Just drop in a single script and you're ready to go.</p>
+            </div>
+        </div>
+        
+        <div class="action-container" id="mid-page-action">
+            <h3>Ready to see the magic?</h3>
+            <p style="margin-bottom: 1rem; color: #475569;">You can configure custom padding and responsive behaviors across your entire app.</p>
+            <button class="btn btn-primary" onclick="window.scrollTo(0,0)">Back to Top</button>
+        </div>
+    </section>
+
+    <section id="testimonials" class="testimonials">
+        <div class="testimonial-box" id="review-box">
+            <span class="quotes">"</span>
+            <p style="font-size: 1.5rem; font-style: italic; color: #334155; margin-bottom: 2rem;">
+                "This is simply the most beautiful product tour library I have ever seen. The way the arrows curve creates such a premium feel compared to generic square tooltips."
+            </p>
+            <div style="font-weight: 700; color: #0f172a;">Jane Doe</div>
+            <div style="color: #64748b; font-size: 0.9rem;">Lead UX Designer, TechCorp</div>
+        </div>
+    </section>
+
+    <footer id="footer-section">
+        <p>&copy; 2026 DemoFlow Inc. All rights reserved.</p>
+    </footer>
+
+    <!-- Load the WebDemoer Library -->
+    <script src="web-demo-er.js"></script>
+    
+    <!-- Load Demo Initialization -->
+    <script src="demo.js"></script>
+
+</body>
+</html>
