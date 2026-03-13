@@ -47,7 +47,8 @@ document.addEventListener('DOMContentLoaded', () => {
         ],
         // Optional customizations
         overlayColor: 'rgba(15, 23, 42, 0.9)', 
-        arrowColor: '#ec4899'
+        arrowColor: '#ec4899',
+        dialogColor: '#f8f8f8ce' // Custom background color for the dialog
     });
 
     // Start the walkthrough
@@ -65,7 +66,7 @@ When instantiating `new WebDemoer(options)`, you can pass the following settings
 | `steps`         | Array      | `[]`                                  | An array of step objects: `{ element: '#id', title: 'T', description: 'D' }`|
 | `overlayColor`  | String     | `'rgba(15, 23, 42, 0.85)'`            | The background color of the full-screen mask (supports rgba for opacity).   |
 | `arrowColor`    | String     | `'#3b82f6'`                           | The gradient start color of the curvy SVG arrow.                            |
-| `dialogColor`   | String     | `'#ffffff'`                           | The background color of the central tooltip dialog.                         |
+| `dialogColor`   | String     | `'#ffffffe6'`                         | The background color of the central tooltip dialog (supports rgba or hex with alpha). |
 | `arrowWidth`    | Number     | `4`                                   | The stroke width of the SVG arrow line.                                     |
 | `borderRadius`  | Number     | `8`                                   | The border-radius applied to the highlight cutout mask.                     |
 | `padding`       | Number     | `10`                                  | Extra padding (in pixels) added around the target element's highlight box.  |
