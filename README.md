@@ -17,10 +17,13 @@ No dependencies. No bloat. Just drop it in and start guiding your users graceful
 Simply include the minified script right before your closing `</body>` tag.
 
 ```html
-<script src="path/to/web-demo-er.min.js"></script>
+<script src="https://pynfinity.com/cdn_bundles/web-demo-er.min.js"></script>
 ```
 
 *(You can also use `web-demo-er.js` for the unminified version during development).*
+```html
+<script src="https://pynfinity.com/cdn_bundles/web-demo-er.js"></script>
+```
 
 ## Quick Start 🚀
 
@@ -94,3 +97,8 @@ Once instantiated, you have full control over the `demoer` instance:
 
 ## License 📄
 MIT License. Free to use and customize!
+
+## 🌐 Website
+
+🔗 Visit: [pynfinity](https://pynfinity.com)
+🧑‍💻 Author: [santoshtvk](https://www.linkedin.com/in/santoshtvk/)
